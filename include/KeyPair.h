@@ -1,5 +1,7 @@
-    
-    /**************************************************************************
+#ifndef INCLUDE_KEYPAIR_H_
+#define INCLUDE_KEYPAIR_H_
+
+/*************************************************************************
     Xanadu Block Chain
     Copyright (C) 2018  W. Westlake wwestlake@lagdaemon.com
 
@@ -15,5 +17,28 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-	****************************************************************************/
-	
+**************************************************************************/
+
+#include <string>
+
+/** The KeyPair is a simple container that holds cryptographic keys
+ *
+ */
+
+class KeyPair {
+	std::string privateKey;
+	std::string publicKey;
+
+	KeyPair(std::string privateKey, std::string publicKey)
+	{
+		this->privateKey = privateKey;
+		this->publicKey = publicKey;
+	}
+
+	std::string getPublicKey() { return this->publicKey; }
+	std::string getPrivateKey() { return this->privateKey; }
+
+};
+
+
+#endif /* INCLUDE_KEYPAIR_H_ */

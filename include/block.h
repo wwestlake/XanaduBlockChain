@@ -1,3 +1,6 @@
+#ifndef __BLOCK_H
+#define __BLOCK_H
+
 /*************************************************************************
     Xanadu Block Chain
     Copyright (C) 2018  W. Westlake wwestlake@lagdaemon.com
@@ -16,13 +19,30 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **************************************************************************/
 
-#include <iostream>
+#include <string>
 
-
-
-int main(int argc, char ** argv)
+/** The Block class represents a single block in the block chain.
+ *
+ *  The completed block chain contains a list of these blocks with
+ *  the payload and hashes.
+ *
+ */
+template <typename Tpayload>
+class Block
 {
-	std::cout << "Xanadu Block Chain Tests" << std::endl;
-	std::cout << "Compiled with: GNU G++ " << __cplusplus << std::endl;
-}
+	long long blockId;			//!< The unique identifier of this block in the chain.
+	Tpayload payload; 			//!< The payload of this block represents the information that is chained.
+	long nonce;					//!< Used to provide proof of work on block chains.
+	std::string previousHash; 	//!< The hash of the previous block in this chain.
+	std::string hash;			//!< The hash of a string representation of the blockId, payload, nonce, and previousHas concatenated together.
 
+public:
+	Block();
+
+
+};
+
+
+
+
+#endif
