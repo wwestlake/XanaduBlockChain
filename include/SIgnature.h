@@ -1,3 +1,6 @@
+#ifndef INCLUDE_SIGNATURE_H_
+#define INCLUDE_SIGNATURE_H_
+
 /*************************************************************************
     Xanadu Block Chain
     Copyright (C) 2018  W. Westlake wwestlake@lagdaemon.com
@@ -16,11 +19,27 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **************************************************************************/
 
-#include <iostream>
+#include <string>
+#include "CryptoAdapter.h"
 
-int main(int argc, char ** argv)
-{
-	std::cout << "Xanadu Block Chain Tests" << std::endl;
-	std::cout << "Compiled with: GNU G++ " << __cplusplus << std::endl;
-}
+template <typename Tconfig, typename Tpayload>
+class Signature {
+	Tpayload payload;
+	std::string signature;
 
+public:
+	Signature(Tpayload payload, std::string signature)
+	{
+		this->payload = payload;
+		this->signature = signature;
+	}
+
+	bool ValidateSignature(CryptoAdapter<Tconfig, Tpayload> crypto) = 0;
+
+
+};
+
+
+
+
+#endif /* INCLUDE_SIGNATURE_H_ */

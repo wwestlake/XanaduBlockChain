@@ -30,18 +30,28 @@
 #include <memory>
 
 
+template <typename Tconfig, typename Tpayload> class Signature;
+
 /** The CryptoAdapter is an abstract class where implementations provide cryptographic services.
  *
  *
  */
+template <typename Tconfig, typename Tpayload>
 class CryptoAdapter {
+
+	Tconfig config;
 
 public:
 
+	CryptoAdapter(Tconfig config)
+	{
+		this->config = config;
+	}
+
 	std::string CreateHash(std::string valueToHash) = 0;
 	bool VerifyHash(std::string hash, std::string valueToHash) = 0;
-	KeyPair GenerateKeys(std::string )
-
+	KeyPair GenerateKeys();
+	Signature<Tconfig, Tpayload> Sign(Tpayload payload) = 0;
 
 
 };
