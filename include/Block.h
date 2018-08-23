@@ -21,6 +21,7 @@
 
 #include <string>
 #include <boost/shared_ptr.hpp>
+#include "UTCDateTime.h"
 
 class UTCDateTime;
 
