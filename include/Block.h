@@ -20,11 +20,13 @@
 **************************************************************************/
 
 #include <string>
+#include "boost/date_time/gregorian/gregorian.hpp"
 
 /** The Block class represents a single block in the block chain.
  *
  *  The completed block chain contains a list of these blocks with
- *  the payload and hashes.
+ *  the payload and hashes.  The payload must be serializable to string format
+ *  for storage, transmission, and hashing.
  *
  */
 template <typename Tpayload>
@@ -32,10 +34,11 @@ class Block
 {
 	long long blockId;			//!< The unique identifier of this block in the chain.
 	Tpayload payload; 			//!< The payload of this block represents the information that is chained.
-	long nonce;					//!< Used to provide proof of work on block chains.
-	std::string previousHash; 	//!< The hash of the previous block in this chain.
-	std::string hash;			//!< The hash of a string representation of the blockId, payload, nonce, and previousHas concatenated together.
-
+	boost::date date_time_stamp;
+	long nonce;				//!< Used to provide proof of work on block chains.
+	std::string previousHash; 		//!< The hash of the previous block in this chain.
+	std::string hash;			//!< The hash of a string representation of the blockId, payload, date_time_stamp, nonce, and previousHash concatenated together.
+	
 public:
 	Block();
 
