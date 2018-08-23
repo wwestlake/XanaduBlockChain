@@ -32,16 +32,18 @@
 template <typename Tpayload>
 class Block
 {
+	Block<Tpayload> *previousBlock;		//!< The previous block in the chain, null if this is the genesis block.
+	Block<Tpayload> *nextBlock;		//!< The next block in the chain, null if this is the last block.
 	long long blockId;			//!< The unique identifier of this block in the chain.
 	Tpayload payload; 			//!< The payload of this block represents the information that is chained.
-	boost::date date_time_stamp;
+	boost::date date_time_stamp;		//!< The data time stamp when this was created.  Should always be recorded in UTC (coordinated universal time)
 	long nonce;				//!< Used to provide proof of work on block chains.
 	std::string previousHash; 		//!< The hash of the previous block in this chain.
 	std::string hash;			//!< The hash of a string representation of the blockId, payload, date_time_stamp, nonce, and previousHash concatenated together.
 	
 public:
 	Block();
-
+	
 
 };
 
